@@ -22,29 +22,10 @@
     --hh:48px; --sw:220px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
+  html{width:100%;height:100%;height:-webkit-fill-available;}
+  body{width:100%;height:100%;min-height:-webkit-fill-available;overflow:hidden;background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;}
 
-  /* Safari iOS full-height fix */
-  html {
-    width:100%;
-    height:100%;
-    height: -webkit-fill-available;
-  }
-  body {
-    width:100%;
-    height:100%;
-    min-height: -webkit-fill-available;
-    overflow:hidden;
-    background:var(--bg);
-    color:var(--text);
-    font-family:'DM Mono',monospace;
-  }
-
-  #hdr{
-    position:fixed;top:0;left:0;right:0;height:var(--hh);
-    background:var(--panel);border-bottom:1px solid var(--border);
-    display:flex;align-items:center;justify-content:space-between;
-    padding:0 14px;z-index:3000;
-  }
+  #hdr{position:fixed;top:0;left:0;right:0;height:var(--hh);background:var(--panel);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 14px;z-index:3000;}
   .hl{display:flex;align-items:baseline;gap:10px;}
   h1{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--accent);letter-spacing:.08em;line-height:1;}
   .sub{font-size:.56rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
@@ -55,28 +36,14 @@
   .sl{font-size:.5rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
   .sn.t{color:var(--text);}.sn.f{color:var(--fatal);}.sn.i{color:var(--accent2);}
 
-  /* Map — explicit pixel position, no flex, no % height */
-  #map{
-    position:fixed;
-    top:var(--hh);
-    left:0;
-    right:var(--sw);
-    bottom:0;
-    background:#0d1117;
-    z-index:1;
-  }
+  #map{position:fixed;top:var(--hh);left:0;right:var(--sw);bottom:0;background:#0d1117;z-index:1;}
 
-  #sidebar{
-    position:fixed;top:var(--hh);right:0;width:var(--sw);bottom:0;
-    background:var(--panel);border-left:1px solid var(--border);
-    display:flex;flex-direction:column;overflow:hidden;z-index:2000;
-  }
+  #sidebar{position:fixed;top:var(--hh);right:0;width:var(--sw);bottom:0;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;z-index:2000;}
   .ss{padding:11px 13px;border-bottom:1px solid var(--border);flex-shrink:0;}
   .slabel{font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
 
   .fbtn{display:flex;align-items:center;gap:7px;width:100%;background:none;border:1px solid var(--border);color:var(--text);padding:5px 8px;font-family:'DM Mono',monospace;font-size:.64rem;cursor:pointer;margin-bottom:5px;letter-spacing:.04em;transition:all .15s;text-align:left;}
   .fbtn:last-child{margin-bottom:0;}
-  .fbtn:hover{border-color:var(--muted);}
   .fbtn.on-f{border-color:var(--fatal);background:rgba(255,32,32,.08);}
   .fbtn.on-i{border-color:var(--accent2);background:rgba(255,140,0,.08);}
   .fbtn.on-p{border-color:var(--pd);background:rgba(59,130,246,.08);}
@@ -90,7 +57,7 @@
   .vbtn.on{border-color:var(--accent);color:var(--accent);background:rgba(255,60,60,.08);}
 
   .yfilter{display:flex;gap:4px;flex-wrap:wrap;}
-  .ybtn{background:none;border:1px solid var(--border);color:var(--muted);padding:3px 6px;font-family:'DM Mono',monospace;font-size:.56rem;cursor:pointer;transition:all .15s;}
+  .ybtn{background:none;border:1px solid var(--border);color:var(--muted);padding:3px 6px;font-family:'DM Mono',monospace;font-size:.54rem;cursor:pointer;transition:all .15s;}
   .ybtn.on{border-color:var(--accent2);color:var(--accent2);background:rgba(255,140,0,.08);}
 
   .rlist{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
@@ -107,16 +74,11 @@
   .pulse.err{background:var(--fatal);}
   @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
 
-  #overlay{
-    position:fixed;top:var(--hh);left:0;right:var(--sw);bottom:0;
-    background:rgba(10,12,15,.88);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    z-index:500;gap:14px;
-  }
+  #overlay{position:fixed;top:var(--hh);left:0;right:var(--sw);bottom:0;background:rgba(10,12,15,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:500;gap:14px;}
   .spin{width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .75s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
   .ot{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.14em;color:var(--accent);}
-  .os{font-size:.58rem;color:var(--muted);letter-spacing:.1em;}
+  .os{font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-align:center;max-width:260px;}
 
   .leaflet-popup-content-wrapper{background:var(--panel)!important;border:1px solid var(--border)!important;border-radius:0!important;color:var(--text)!important;box-shadow:0 4px 20px rgba(0,0,0,.6)!important;}
   .leaflet-popup-content{margin:10px 13px!important;}
@@ -188,22 +150,21 @@ const PROXY = 'https://corsproxy.io/?';
 const FDOT  = 'https://gis.fdot.gov/arcgis/rest/services/Crashes_All/MapServer/0/query';
 const FIELDS = 'OFFICER_LATITUDE,OFFICER_LONGITUDE,ON_ROADWAY_NAME,INT_ROADWAY_NAME,NUMBER_OF_KILLED,NUMBER_OF_INJURED,CRASH_DATE,WEEKDAY_TXT';
 
-// Wait for full paint before init so Safari has real dimensions
+var map, allCrashes=[], hLayer=null, dLayer=null, curView='heat';
+var filters={fatal:true,injury:true,pd:true}, activeYear='all';
+
 window.addEventListener('load', function() {
   requestAnimationFrame(function() {
     requestAnimationFrame(initMap);
   });
 });
 
-var map, allCrashes=[], hLayer=null, dLayer=null, curView='heat';
-var filters={fatal:true,injury:true,pd:true}, activeYear='all';
-
 function initMap() {
   map = L.map('map', {
     center: [28.18, -82.50],
     zoom: 11,
     preferCanvas: true,
-    tap: false  // fixes Safari touch issues
+    tap: false
   });
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -212,18 +173,20 @@ function initMap() {
     subdomains: 'abcd'
   }).addTo(map);
 
-  // Belt-and-suspenders invalidateSize for Safari
   setTimeout(function(){ map.invalidateSize(); }, 100);
-  setTimeout(function(){ map.invalidateSize(); }, 500);
+  setTimeout(function(){ map.invalidateSize(); }, 600);
 
   init();
 }
 
 async function fetchCounty(county) {
   const p = new URLSearchParams({
-    where:`COUNTY_TXT='${county}'`,
-    outFields:FIELDS, outSR:'4326', f:'json',
-    resultRecordCount:1000, orderByFields:'CRASH_DATE DESC'
+    where: `COUNTY_TXT='${county}'`,
+    outFields: FIELDS,
+    outSR: '4326',
+    f: 'json',
+    resultRecordCount: 1000,
+    orderByFields: 'CRASH_DATE DESC'
   });
   const url = PROXY + encodeURIComponent(`${FDOT}?${p}`);
   const res = await fetch(url);
@@ -231,41 +194,66 @@ async function fetchCounty(county) {
   const json = await res.json();
   if (json.error) throw new Error(json.error.message);
   return (json.features||[]).map(f=>f.attributes)
-    .filter(a=>a.OFFICER_LATITUDE&&a.OFFICER_LONGITUDE
-              &&a.OFFICER_LATITUDE>27.5&&a.OFFICER_LATITUDE<29
-              &&a.OFFICER_LONGITUDE>-83&&a.OFFICER_LONGITUDE<-81.5)
-    .map(a=>{
-      const d=a.CRASH_DATE?new Date(a.CRASH_DATE):null;
+    .filter(a => a.OFFICER_LATITUDE && a.OFFICER_LONGITUDE
+               && a.OFFICER_LATITUDE > 27.5 && a.OFFICER_LATITUDE < 29
+               && a.OFFICER_LONGITUDE > -83  && a.OFFICER_LONGITUDE < -81.5)
+    .map(a => {
+      const d = a.CRASH_DATE ? new Date(a.CRASH_DATE) : null;
       return {
-        lat:a.OFFICER_LATITUDE, lng:a.OFFICER_LONGITUDE,
-        road:(a.ON_ROADWAY_NAME||'UNKNOWN').trim(),
-        cross:(a.INT_ROADWAY_NAME||'').trim(),
-        killed:a.NUMBER_OF_KILLED||0, injured:a.NUMBER_OF_INJURED||0,
-        date:d?d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'—',
-        year:d?d.getFullYear():null, day:a.WEEKDAY_TXT||'',
-        sev:(a.NUMBER_OF_KILLED>0)?'fatal':(a.NUMBER_OF_INJURED>0)?'injury':'pd'
+        lat:   a.OFFICER_LATITUDE,
+        lng:   a.OFFICER_LONGITUDE,
+        road:  (a.ON_ROADWAY_NAME  || 'UNKNOWN').trim(),
+        cross: (a.INT_ROADWAY_NAME || '').trim(),
+        killed:  a.NUMBER_OF_KILLED  || 0,
+        injured: a.NUMBER_OF_INJURED || 0,
+        date: d ? d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—',
+        year: d ? d.getFullYear() : null,
+        day:  a.WEEKDAY_TXT || '',
+        sev:  (a.NUMBER_OF_KILLED > 0) ? 'fatal' : (a.NUMBER_OF_INJURED > 0) ? 'injury' : 'pd'
       };
     });
 }
 
-function vis(){return allCrashes.filter(c=>filters[c.sev]&&(activeYear==='all'||c.year===activeYear));}
-function col(s){return s==='fatal'?'#ff2020':s==='injury'?'#ff8c00':'#3b82f6';}
+function vis() {
+  return allCrashes.filter(c =>
+    filters[c.sev] && (activeYear === 'all' || c.year === activeYear)
+  );
+}
 
-function render(){
-  if(hLayer){map.removeLayer(hLayer);hLayer=null;}
-  if(dLayer){map.removeLayer(dLayer);dLayer=null;}
-  const v=vis(); if(!v.length)return;
-  if(curView==='heat'){
-    hLayer=L.heatLayer(v.map(c=>[c.lat,c.lng,c.sev==='fatal'?1.0:c.sev==='injury'?0.55:0.18]),
-      {radius:20,blur:26,maxZoom:17,gradient:{0.1:'#1e3a8a',0.35:'#ff8c00',0.7:'#ff3c3c',1.0:'#ff0000'}}
+function col(s) { return s==='fatal'?'#ff2020':s==='injury'?'#ff8c00':'#3b82f6'; }
+
+function render() {
+  if (hLayer) { map.removeLayer(hLayer); hLayer=null; }
+  if (dLayer) { map.removeLayer(dLayer); dLayer=null; }
+  const v = vis();
+  if (!v.length) return;
+
+  if (curView === 'heat') {
+    // All points get weight 1.0 — let density do the work, not weighting
+    // max:1 + minOpacity high = bright and visible everywhere
+    hLayer = L.heatLayer(
+      v.map(c => [c.lat, c.lng, 1.0]),
+      {
+        radius: 22,
+        blur: 18,
+        maxZoom: 17,
+        max: 1.0,
+        minOpacity: 0.5,
+        gradient: {
+          0.0: '#ff8c00',
+          0.4: '#ff4500',
+          0.7: '#ff1a00',
+          1.0: '#ffffff'
+        }
+      }
     ).addTo(map);
   } else {
-    dLayer=L.layerGroup();
-    v.forEach(c=>{
-      L.circleMarker([c.lat,c.lng],{
-        radius:c.sev==='fatal'?7:c.sev==='injury'?5:3.5,
-        fillColor:col(c.sev),color:'#000',weight:.5,
-        fillOpacity:c.sev==='fatal'?0.95:0.72
+    dLayer = L.layerGroup();
+    v.forEach(c => {
+      L.circleMarker([c.lat, c.lng], {
+        radius: c.sev==='fatal'?7:c.sev==='injury'?5:3.5,
+        fillColor: col(c.sev), color:'#000', weight:.5,
+        fillOpacity: c.sev==='fatal'?0.95:0.72
       }).bindPopup(`
         <div class="pr">${c.road}</div>
         <div class="prow"><span class="pk">AT</span><span class="pv">${c.cross||'—'}</span></div>
@@ -279,76 +267,99 @@ function render(){
   }
 }
 
-function updateStats(){
-  const v=vis();
-  document.getElementById('st').textContent=v.length.toLocaleString();
-  document.getElementById('sf').textContent=v.filter(c=>c.killed>0).length.toLocaleString();
-  document.getElementById('si').textContent=v.reduce((s,c)=>s+c.injured,0).toLocaleString();
+function updateStats() {
+  const v = vis();
+  document.getElementById('st').textContent = v.length.toLocaleString();
+  document.getElementById('sf').textContent = v.filter(c=>c.killed>0).length.toLocaleString();
+  document.getElementById('si').textContent = v.reduce((s,c)=>s+c.injured,0).toLocaleString();
 }
 
-function buildRoadList(){
-  const cnt={};
-  vis().forEach(c=>{cnt[c.road]=(cnt[c.road]||0)+1;});
-  document.getElementById('rlist').innerHTML=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,25)
-    .map(([r,n])=>`<div class="ri" onclick="fly('${r.replace(/'/g,"\\'")}')"><span class="rn">${r}</span><span class="rc">${n}</span></div>`)
+function buildRoadList() {
+  const cnt = {};
+  vis().forEach(c => { cnt[c.road]=(cnt[c.road]||0)+1; });
+  document.getElementById('rlist').innerHTML = Object.entries(cnt)
+    .sort((a,b)=>b[1]-a[1]).slice(0,25)
+    .map(([r,n]) => `<div class="ri" onclick="fly('${r.replace(/'/g,"\\'")}')"><span class="rn">${r}</span><span class="rc">${n}</span></div>`)
     .join('');
 }
 
-function buildYearFilter(){
-  const years=[...new Set(allCrashes.map(c=>c.year).filter(Boolean))].sort((a,b)=>b-a);
-  const yf=document.getElementById('yfilter');
-  years.forEach(y=>{
-    const b=document.createElement('button');
-    b.className='ybtn'; b.textContent=y;
-    b.onclick=()=>setYear(y,b); yf.appendChild(b);
+function buildYearFilter() {
+  // Count per year so we can show what the API actually returned
+  const yCnt = {};
+  allCrashes.forEach(c => { if(c.year) yCnt[c.year]=(yCnt[c.year]||0)+1; });
+  const years = Object.keys(yCnt).map(Number).sort((a,b)=>b-a);
+  const yf = document.getElementById('yfilter');
+  years.forEach(y => {
+    const b = document.createElement('button');
+    b.className = 'ybtn';
+    b.textContent = `${y} (${yCnt[y]})`;
+    b.dataset.year = y;
+    b.onclick = () => setYear(y, b);
+    yf.appendChild(b);
   });
 }
 
-function fly(road){
-  const m=allCrashes.filter(c=>c.road===road); if(!m.length)return;
+function fly(road) {
+  const m = allCrashes.filter(c=>c.road===road);
+  if (!m.length) return;
   map.fitBounds([
-    [Math.min(...m.map(c=>c.lat)),Math.min(...m.map(c=>c.lng))],
-    [Math.max(...m.map(c=>c.lat)),Math.max(...m.map(c=>c.lng))]
-  ],{padding:[50,50]});
-}
-function tog(type,btn){
-  filters[type]=!filters[type];
-  btn.classList.toggle(type==='fatal'?'on-f':type==='injury'?'on-i':'on-p');
-  render();updateStats();buildRoadList();
-}
-function setV(v,btn){
-  curView=v;
-  document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');render();
-}
-function setYear(y,btn){
-  activeYear=y==='all'?'all':parseInt(y);
-  document.querySelectorAll('.ybtn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');render();updateStats();buildRoadList();
+    [Math.min(...m.map(c=>c.lat)), Math.min(...m.map(c=>c.lng))],
+    [Math.max(...m.map(c=>c.lat)), Math.max(...m.map(c=>c.lng))]
+  ], {padding:[50,50]});
 }
 
-async function init(){
-  const ostat=document.getElementById('ostat'),sb=document.getElementById('sb'),pp=document.getElementById('pp');
-  try{
-    ostat.textContent='Fetching Pasco County...';
-    const pasco=await fetchCounty('PASCO');
-    ostat.textContent='Fetching Hillsborough County...';
-    const hills=await fetchCounty('HILLSBOROUGH');
-    allCrashes=[...pasco,...hills];
-    document.getElementById('overlay').style.display='none';
-    buildYearFilter();render();updateStats();buildRoadList();
-    pp.className='pulse ok';
-    sb.textContent=`${allCrashes.length.toLocaleString()} crashes · FDOT live`;
-  }catch(err){
-    ostat.textContent='Error: '+err.message;
-    sb.textContent='Load failed';
-    pp.className='pulse err';
+function tog(type, btn) {
+  filters[type] = !filters[type];
+  btn.classList.toggle(type==='fatal'?'on-f':type==='injury'?'on-i':'on-p');
+  render(); updateStats(); buildRoadList();
+}
+
+function setV(v, btn) {
+  curView = v;
+  document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); render();
+}
+
+function setYear(y, btn) {
+  activeYear = y==='all' ? 'all' : parseInt(y);
+  document.querySelectorAll('.ybtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); render(); updateStats(); buildRoadList();
+}
+
+async function init() {
+  const ostat = document.getElementById('ostat');
+  const sb    = document.getElementById('sb');
+  const pp    = document.getElementById('pp');
+  try {
+    ostat.textContent = 'Fetching Pasco County...';
+    const pasco = await fetchCounty('PASCO');
+    ostat.textContent = 'Fetching Hillsborough County...';
+    const hills = await fetchCounty('HILLSBOROUGH');
+    allCrashes = [...pasco, ...hills];
+
+    // Debug: log what years we got
+    const yCnt = {};
+    allCrashes.forEach(c => { if(c.year) yCnt[c.year]=(yCnt[c.year]||0)+1; });
+    console.log('Years in data:', yCnt);
+
+    document.getElementById('overlay').style.display = 'none';
+    buildYearFilter();
+    render();
+    updateStats();
+    buildRoadList();
+
+    pp.className = 'pulse ok';
+    sb.textContent = `${allCrashes.length.toLocaleString()} crashes · FDOT live`;
+  } catch(err) {
+    ostat.textContent = 'Error: ' + err.message;
+    sb.textContent = 'Load failed';
+    pp.className = 'pulse err';
     console.error(err);
   }
 }
 
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
 }
 </script>
 </body>
