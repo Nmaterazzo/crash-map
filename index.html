@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0c0f">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -22,9 +22,29 @@
     --hh:48px; --sw:220px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;}
 
-  #hdr{position:fixed;top:0;left:0;right:0;height:var(--hh);background:var(--panel);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 14px;z-index:3000;}
+  /* Safari iOS full-height fix */
+  html {
+    width:100%;
+    height:100%;
+    height: -webkit-fill-available;
+  }
+  body {
+    width:100%;
+    height:100%;
+    min-height: -webkit-fill-available;
+    overflow:hidden;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'DM Mono',monospace;
+  }
+
+  #hdr{
+    position:fixed;top:0;left:0;right:0;height:var(--hh);
+    background:var(--panel);border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 14px;z-index:3000;
+  }
   .hl{display:flex;align-items:baseline;gap:10px;}
   h1{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--accent);letter-spacing:.08em;line-height:1;}
   .sub{font-size:.56rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
@@ -35,9 +55,22 @@
   .sl{font-size:.5rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
   .sn.t{color:var(--text);}.sn.f{color:var(--fatal);}.sn.i{color:var(--accent2);}
 
-  #map{position:fixed;top:var(--hh);left:0;right:var(--sw);bottom:0;z-index:1;}
+  /* Map — explicit pixel position, no flex, no % height */
+  #map{
+    position:fixed;
+    top:var(--hh);
+    left:0;
+    right:var(--sw);
+    bottom:0;
+    background:#0d1117;
+    z-index:1;
+  }
 
-  #sidebar{position:fixed;top:var(--hh);right:0;width:var(--sw);bottom:0;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;z-index:2000;}
+  #sidebar{
+    position:fixed;top:var(--hh);right:0;width:var(--sw);bottom:0;
+    background:var(--panel);border-left:1px solid var(--border);
+    display:flex;flex-direction:column;overflow:hidden;z-index:2000;
+  }
   .ss{padding:11px 13px;border-bottom:1px solid var(--border);flex-shrink:0;}
   .slabel{font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
 
@@ -60,22 +93,26 @@
   .ybtn{background:none;border:1px solid var(--border);color:var(--muted);padding:3px 6px;font-family:'DM Mono',monospace;font-size:.56rem;cursor:pointer;transition:all .15s;}
   .ybtn.on{border-color:var(--accent2);color:var(--accent2);background:rgba(255,140,0,.08);}
 
-  .rlist{flex:1;overflow-y:auto;}
+  .rlist{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
   .rlist::-webkit-scrollbar{width:2px;}
   .rlist::-webkit-scrollbar-thumb{background:var(--border);}
-  .ri{display:flex;justify-content:space-between;align-items:center;padding:5px 13px;border-bottom:1px solid rgba(30,37,48,.5);cursor:pointer;transition:background .1s;}
-  .ri:hover{background:rgba(255,60,60,.05);}
+  .ri{display:flex;justify-content:space-between;align-items:center;padding:5px 13px;border-bottom:1px solid rgba(30,37,48,.5);cursor:pointer;}
   .rn{font-size:.58rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:148px;}
   .rc{font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:var(--accent);}
 
   .statusbar{padding:6px 13px;border-top:1px solid var(--border);font-size:.54rem;color:var(--muted);letter-spacing:.07em;display:flex;align-items:center;gap:5px;flex-shrink:0;}
-  .pulse{width:6px;height:6px;border-radius:50%;flex-shrink:0;transition:background .3s;}
+  .pulse{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
   .pulse.loading{background:var(--accent);animation:blink 1.2s infinite;}
   .pulse.ok{background:#22c55e;}
   .pulse.err{background:var(--fatal);}
   @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
 
-  #overlay{position:fixed;top:var(--hh);left:0;right:var(--sw);bottom:0;background:rgba(10,12,15,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:500;gap:14px;}
+  #overlay{
+    position:fixed;top:var(--hh);left:0;right:var(--sw);bottom:0;
+    background:rgba(10,12,15,.88);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    z-index:500;gap:14px;
+  }
   .spin{width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .75s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
   .ot{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.14em;color:var(--accent);}
@@ -151,17 +188,36 @@ const PROXY = 'https://corsproxy.io/?';
 const FDOT  = 'https://gis.fdot.gov/arcgis/rest/services/Crashes_All/MapServer/0/query';
 const FIELDS = 'OFFICER_LATITUDE,OFFICER_LONGITUDE,ON_ROADWAY_NAME,INT_ROADWAY_NAME,NUMBER_OF_KILLED,NUMBER_OF_INJURED,CRASH_DATE,WEEKDAY_TXT';
 
-const map = L.map('map', { center:[28.18,-82.50], zoom:11, preferCanvas:true });
+// Wait for full paint before init so Safari has real dimensions
+window.addEventListener('load', function() {
+  requestAnimationFrame(function() {
+    requestAnimationFrame(initMap);
+  });
+});
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution:'&copy; OpenStreetMap &copy; CARTO | Crash data: FDOT',
-  maxZoom:19, subdomains:'abcd'
-}).addTo(map);
+var map, allCrashes=[], hLayer=null, dLayer=null, curView='heat';
+var filters={fatal:true,injury:true,pd:true}, activeYear='all';
 
-setTimeout(() => map.invalidateSize(), 200);
+function initMap() {
+  map = L.map('map', {
+    center: [28.18, -82.50],
+    zoom: 11,
+    preferCanvas: true,
+    tap: false  // fixes Safari touch issues
+  });
 
-let allCrashes=[], hLayer=null, dLayer=null, curView='heat';
-let filters={fatal:true,injury:true,pd:true}, activeYear='all';
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO | Crash data: FDOT',
+    maxZoom: 19,
+    subdomains: 'abcd'
+  }).addTo(map);
+
+  // Belt-and-suspenders invalidateSize for Safari
+  setTimeout(function(){ map.invalidateSize(); }, 100);
+  setTimeout(function(){ map.invalidateSize(); }, 500);
+
+  init();
+}
 
 async function fetchCounty(county) {
   const p = new URLSearchParams({
@@ -175,7 +231,9 @@ async function fetchCounty(county) {
   const json = await res.json();
   if (json.error) throw new Error(json.error.message);
   return (json.features||[]).map(f=>f.attributes)
-    .filter(a=>a.OFFICER_LATITUDE&&a.OFFICER_LONGITUDE&&a.OFFICER_LATITUDE>27.5&&a.OFFICER_LATITUDE<29&&a.OFFICER_LONGITUDE>-83&&a.OFFICER_LONGITUDE<-81.5)
+    .filter(a=>a.OFFICER_LATITUDE&&a.OFFICER_LONGITUDE
+              &&a.OFFICER_LATITUDE>27.5&&a.OFFICER_LATITUDE<29
+              &&a.OFFICER_LONGITUDE>-83&&a.OFFICER_LONGITUDE<-81.5)
     .map(a=>{
       const d=a.CRASH_DATE?new Date(a.CRASH_DATE):null;
       return {
@@ -248,7 +306,10 @@ function buildYearFilter(){
 
 function fly(road){
   const m=allCrashes.filter(c=>c.road===road); if(!m.length)return;
-  map.fitBounds([[Math.min(...m.map(c=>c.lat)),Math.min(...m.map(c=>c.lng))],[Math.max(...m.map(c=>c.lat)),Math.max(...m.map(c=>c.lng))]],{padding:[50,50]});
+  map.fitBounds([
+    [Math.min(...m.map(c=>c.lat)),Math.min(...m.map(c=>c.lng))],
+    [Math.max(...m.map(c=>c.lat)),Math.max(...m.map(c=>c.lng))]
+  ],{padding:[50,50]});
 }
 function tog(type,btn){
   filters[type]=!filters[type];
@@ -256,7 +317,8 @@ function tog(type,btn){
   render();updateStats();buildRoadList();
 }
 function setV(v,btn){
-  curView=v;document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));
+  curView=v;
+  document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');render();
 }
 function setYear(y,btn){
@@ -288,8 +350,6 @@ async function init(){
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 }
-
-init();
 </script>
 </body>
 </html>
