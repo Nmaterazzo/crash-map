@@ -46,7 +46,7 @@
 
   /* ── LAYOUT ── */
   .wrap { display:flex; flex:1; overflow:hidden; min-height:0; }
-  #map { flex:1; min-width:0; background:#0d1117; }
+  #map { flex:1; min-width:0; background:#0d1117; height:100%; }
 
   /* ── SIDEBAR ── */
   .sidebar {
@@ -228,7 +228,7 @@ let filters = { fatal:true, injury:true, pd:true };
 let activeYear = 'all';
 
 // ── FDOT FETCH ─────────────────────────────────────────────
-const FDOT = 'https://gis.fdot.gov/arcgis/rest/services/Crashes_All/MapServer/0/query';
+const FDOT = 'https://corsproxy.io/?https://gis.fdot.gov/arcgis/rest/services/Crashes_All/MapServer/0/query';
 const FIELDS = 'OFFICER_LATITUDE,OFFICER_LONGITUDE,ON_ROADWAY_NAME,INT_ROADWAY_NAME,NUMBER_OF_KILLED,NUMBER_OF_INJURED,CRASH_DATE,WEEKDAY_TXT';
 
 async function fetchCounty(county) {
